@@ -57,7 +57,11 @@ const Navbar = () => {
     <div className="navbar shadow-sm bg-[#FFFFFF] md:px-12 ">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div
+            tabIndex={0}
+            role="button"
+            className="btn btn-ghost lg:hidden px-0"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -81,14 +85,12 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <a className="text-xl md:text-3xl font-bold text-[#001931] flex items-center">
-          <img
-            src={logo}
-            alt="logo"
-            className="max-w-20 md:gap-3 rounded-full"
-          />
-          AgroNet
-        </a>
+        <div className="flex items-center">
+          <img src={logo} alt="logo" className="w-14 md:w-20 rounded-full " />
+          <a className="text-xl md:text-3xl font-bold text-[#001931] ">
+            AgroNet
+          </a>
+        </div>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal gap-4 text-[16px] font-medium text-[#1b1919e5] flex items-center">
@@ -106,7 +108,7 @@ const Navbar = () => {
             </div>
             <button
               onClick={handleLogOut}
-              className="bg-[#4CAF50] hover:bg-[#388E3C] text-white font-semibold px-10 py-3 rounded-lg transition hover:shadow cursor-pointer"
+              className="bg-[#4CAF50] hover:bg-[#388E3C] text-white font-semibold px-6 md:px-10 py-3 rounded-lg transition hover:shadow cursor-pointer"
             >
               {" "}
               SignOut
@@ -115,7 +117,7 @@ const Navbar = () => {
         ) : (
           <Link
             to="/login"
-            className="bg-[#4CAF50] hover:bg-[#388E3C] text-white font-semibold px-10 py-3 rounded-lg transition hover:shadow"
+            className="bg-[#4CAF50] hover:bg-[#388E3C] text-white font-semibold px-6 md:px-10 py-3 rounded-lg transition hover:shadow"
           >
             {" "}
             Login

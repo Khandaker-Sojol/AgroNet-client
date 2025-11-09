@@ -6,7 +6,7 @@ export default function Footer() {
     <div className="">
       <footer className="bg-[#184C3A] bg-[url('https://i.ibb.co/rfphsmfV/11.png')] bg-no-repeat bg-bottom-left bg-size-[50%_100%] text-white md:pt-20 pt-10">
         {/* Main Container */}
-        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10 items-center p-4">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-10 items-center p-4">
           {/* Logo + Description */}
           <div>
             <div className="flex items-center mb-3">
