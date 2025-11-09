@@ -1,20 +1,35 @@
 import React from "react";
 import { Link, NavLink } from "react-router";
+import logo from "/images/logo.png";
 
 const Navbar = () => {
   const navLinks = (
     <>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/all-crops">All Crops</NavLink>
-      <NavLink to="/login">Login</NavLink>
-      <NavLink to="/register">Register</NavLink>
-      <NavLink to="/add-crops">Add Crops</NavLink>
-      <NavLink to="/my-posts">My posts</NavLink>
-      <NavLink to="/my-interests">My interests</NavLink>
+      <li className="hover:text-[#4CAF50]">
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li className="hover:text-[#4CAF50]">
+        <NavLink to="/all-crops">All Crops</NavLink>
+      </li>
+      <li className="hover:text-[#4CAF50]">
+        <NavLink to="/login">Login</NavLink>
+      </li>
+      <li className="hover:text-[#4CAF50]">
+        <NavLink to="/register">Register</NavLink>
+      </li>
+      <li className="hover:text-[#4CAF50]">
+        <NavLink to="/add-crops">Add Crops</NavLink>
+      </li>
+      <li className="hover:text-[#4CAF50]">
+        <NavLink to="/my-posts">My posts</NavLink>
+      </li>
+      <li className="hover:text-[#4CAF50]">
+        <NavLink to="/my-interests">My interests</NavLink>
+      </li>
     </>
   );
   return (
-    <div className="navbar shadow-sm bg-[#FFFFFF] md:px-12 py-4">
+    <div className="navbar shadow-sm bg-[#FFFFFF] md:px-12 ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -41,7 +56,10 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <a className="text-2xl md:text-3xl font-bold text-[#001931]">AgroNet</a>
+        <a className="text-2xl md:text-3xl font-bold text-[#001931] flex items-center">
+          <img src={logo} alt="logo" className="w-20  gap-3 rounded-full" />
+          AgroNet
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal gap-4 text-[16px] font-medium text-[#1b1919e5] flex items-center">
