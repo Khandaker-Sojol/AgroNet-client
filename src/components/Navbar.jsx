@@ -7,7 +7,28 @@ const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
   console.log(user);
 
-  const navLinks = (
+  const navLinks = user ? (
+    <>
+      <li className="hover:text-[#4CAF50]">
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li className="hover:text-[#4CAF50]">
+        <NavLink to="/all-crops">All Crops</NavLink>
+      </li>
+      <li className="hover:text-[#4CAF50]">
+        <NavLink to="/profile">Profile</NavLink>
+      </li>
+      <li className="hover:text-[#4CAF50]">
+        <NavLink to="/add-crops">Add Crops</NavLink>
+      </li>
+      <li className="hover:text-[#4CAF50]">
+        <NavLink to="/my-posts">My Posts</NavLink>
+      </li>
+      <li className="hover:text-[#4CAF50]">
+        <NavLink to="/my-interests">My Interests</NavLink>
+      </li>
+    </>
+  ) : (
     <>
       <li className="hover:text-[#4CAF50]">
         <NavLink to="/">Home</NavLink>
@@ -20,15 +41,6 @@ const Navbar = () => {
       </li>
       <li className="hover:text-[#4CAF50]">
         <NavLink to="/register">Register</NavLink>
-      </li>
-      <li className="hover:text-[#4CAF50]">
-        <NavLink to="/add-crops">Add Crops</NavLink>
-      </li>
-      <li className="hover:text-[#4CAF50]">
-        <NavLink to="/my-posts">My posts</NavLink>
-      </li>
-      <li className="hover:text-[#4CAF50]">
-        <NavLink to="/my-interests">My interests</NavLink>
       </li>
     </>
   );
