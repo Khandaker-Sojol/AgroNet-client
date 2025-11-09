@@ -1,13 +1,13 @@
-import React, { use, useState } from "react";
+import React, { use } from "react";
 import googleLogo from "/images/icon-google.png";
 import { Link, useNavigate } from "react-router";
 import AuthContext from "../context/AuthContext";
 import Swal from "sweetalert2";
 
 const Register = () => {
-  const { signInWithGoogle, createUser, setUser, setLoading } =
+  const { signInWithGoogle, createUser, setUser, setLoading, error, setError } =
     use(AuthContext);
-  const [error, setError] = useState("");
+
   const navigate = useNavigate();
 
   const handleGoogleSignIn = () => {
@@ -113,7 +113,7 @@ const Register = () => {
 
                   {error && (
                     <p className="text-red-500 text-sm font-semibold">
-                      {error}r
+                      {error}
                     </p>
                   )}
 
