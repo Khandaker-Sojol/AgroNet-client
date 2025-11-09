@@ -8,6 +8,7 @@ import PrivateRoute from "../privateRoute/privateRoute";
 import Profile from "../pages/Profile";
 import MyPosts from "../pages/MyPosts";
 import MyInterests from "../pages/MyInterests";
+import AddCrops from "../pages/AddCrops";
 
 export const router = createBrowserRouter([
   {
@@ -17,10 +18,6 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
-      },
-      {
-        path: "/all-crops",
-        element: <AllCrops></AllCrops>,
       },
       {
         path: "/all-crops",
@@ -39,6 +36,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Profile></Profile>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/add-crops",
+        element: (
+          <PrivateRoute>
+            <AddCrops></AddCrops>
           </PrivateRoute>
         ),
       },

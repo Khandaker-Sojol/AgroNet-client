@@ -3,11 +3,11 @@ import AuthContext from "../context/AuthContext";
 import Loader from "../components/Loader";
 
 const PrivateRoute = ({ children }) => {
-  const { loading } = use(AuthContext);
+  //   const { loading } = use(AuthContext);
 
-  if (loading) {
-    return <Loader></Loader>;
-  }
+  //   if (loading) {
+  //     return <Loader></Loader>;
+  //   }
   return children;
 };
 

@@ -1,2 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
 @import "tailwindcss";
 @plugin "daisyui";
+
+body {
+  font-family: "Manrope", sans-serif;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+.active {
+  color: #49a760;
+  border: 1px solid #49a760;
+  padding: 3px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+}
