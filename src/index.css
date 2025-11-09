@@ -14,3 +14,16 @@ body {
   border-radius: 25px;
   font-weight: bold;
 }
+
+@keyframes zoomOut {
+  0% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-zoomOut {
+  animation: zoomOut 4s ease-in-out forwards;
+}

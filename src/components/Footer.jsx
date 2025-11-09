@@ -3,10 +3,10 @@ import logo from "/images/logo.png";
 
 export default function Footer() {
   return (
-    <div>
-      <footer className="bg-[#184C3A] bg-[url('https://i.ibb.co/rfphsmfV/11.png')] bg-no-repeat bg-bottom-left bg-size-[50%_100%] text-white pt-20">
+    <div className="">
+      <footer className="bg-[#184C3A] bg-[url('https://i.ibb.co/rfphsmfV/11.png')] bg-no-repeat bg-bottom-left bg-size-[50%_100%] text-white md:pt-20 pt-10">
         {/* Main Container */}
-        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10 items-center">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-10 items-center p-4">
           {/* Logo + Description */}
           <div>
             <div className="flex items-center mb-3">
@@ -56,11 +56,11 @@ export default function Footer() {
           <div>
             <h3 className="text-xl font-semibold mb-5">Recent Posts</h3>
             <div className="space-y-5">
-              <div className="flex items-start space-x-3">
+              <div className="flex items-center space-x-3">
                 <img
-                  src="https://i.ibb.co/q9ktQpZ/tractor.jpg"
+                  src="https://validthemes.net/themeforest/wp/agrul/wp-content/uploads/2023/04/blog-2-150x150.jpg"
                   alt="post1"
-                  className="w-12 h-12 rounded-md object-cover"
+                  className="w-22 rounded-md object-cover"
                 />
                 <div>
                   <p className=" text-[#EFB940]">April 14, 2023</p>
@@ -69,11 +69,11 @@ export default function Footer() {
                   </p>
                 </div>
               </div>
-              <div className="flex items-start space-x-3">
+              <div className="flex items-center space-x-3">
                 <img
-                  src="https://i.ibb.co/7KhZ9JR/pumpkin.jpg"
+                  src="https://validthemes.net/themeforest/wp/agrul/wp-content/uploads/2023/04/blog-1-150x150.jpg"
                   alt="post2"
-                  className="w-12 h-12 rounded-md object-cover"
+                  className="w-22 rounded-md object-cover"
                 />
                 <div>
                   <p className="text-[#EFB940]">April 14, 2023</p>
@@ -111,7 +111,7 @@ export default function Footer() {
           </div>
         </div>
         {/* Bottom Section */}
-        <div className="border-t border-gray-600 text-center text-gray-300 flex justify-around bg-[#1a4133] py-6 mt-32">
+        <div className="border-t border-gray-600 text-center text-gray-300 md:flex justify-around bg-[#1a4133] py-6 md:mt-32 mt-12 ">
           <p className="text-sm">
             © Copyright 2025. All Rights Reserved by AgroNet
           </p>
