@@ -1,12 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 
 const AddCrop = () => {
-  const { user: currentUser } = useContext(AuthContext);
+  const { user: currentUser, loading, setLoading } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
 
   const handleAddCrop = async (e) => {
     e.preventDefault();
@@ -24,7 +23,7 @@ const AddCrop = () => {
     const newCrop = {
       cropName,
       category,
-      quantity,
+      quantity: parseFloat(quantity),
       pricePerUnit: parseFloat(price),
       location,
       description,
@@ -70,7 +69,6 @@ const AddCrop = () => {
       <h2 className="text-3xl font-semibold text-center mb-6 text-green-700">
         Add New Crop
       </h2>
-
       <form
         onSubmit={handleAddCrop}
         className="bg-white shadow-md rounded-2xl p-6 space-y-5 border border-gray-100"
@@ -86,7 +84,7 @@ const AddCrop = () => {
           <input
             type="text"
             name="category"
-            placeholder="Category (e.g. Fruits, Vegetables)"
+            placeholder="Category"
             className="input input-bordered w-full"
             required
           />
@@ -119,15 +117,13 @@ const AddCrop = () => {
             required
           />
         </div>
-
         <textarea
           name="description"
           placeholder="Description"
           className="textarea textarea-bordered w-full"
           rows="4"
           required
-        ></textarea>
-
+        />
         <button
           type="submit"
           disabled={loading}

@@ -4,7 +4,10 @@ import { Link } from "react-router";
 const CropCard = ({ crop }) => {
   return (
     <div>
-      <div key={crop._id} className="border border-gray-200 rounded p-4 shadow">
+      <div
+        key={crop._id}
+        className="border border-gray-200 rounded p-4 shadow hover:shadow-2xl transition-all duration-300"
+      >
         <img
           src={crop.image}
           alt={crop.name}
