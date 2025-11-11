@@ -8,7 +8,7 @@ const CropCard = ({ crop }) => {
         <img
           src={crop.image}
           alt={crop.name}
-          className="w-full h-48 object-cover rounded"
+          className="w-full h-64 object-cover rounded"
         />
         <h2 className="text-xl font-bold mt-2">{crop.cropName}</h2>
         <p className="text-gray-600">{crop.description?.slice(0, 60)}...</p>
