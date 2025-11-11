@@ -3,12 +3,14 @@ import Banner from "../components/Banner";
 import LatestCrops from "../components/LatestCrops";
 import AgroNews from "../components/AgroNwes";
 import WhyChooseUs from "../components/WhyChooseUs";
+import HowItWorks from "../components/HowItWorks";
 
 const Home = () => {
   return (
     <div>
       <Banner></Banner>
       <LatestCrops></LatestCrops>
+      <HowItWorks></HowItWorks>
       <AgroNews></AgroNews>
       <WhyChooseUs></WhyChooseUs>
     </div>

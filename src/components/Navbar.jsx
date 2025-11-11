@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import logo from "/images/logo.png";
 import AuthContext from "../context/AuthContext";
 import Swal from "sweetalert2";
@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 const Navbar = () => {
   const { user, logOutUser } = useContext(AuthContext);
   console.log(user);
+  const navigate = useNavigate();
 
   const navLinks = user ? (
     <>
@@ -54,6 +55,7 @@ const Navbar = () => {
           showConfirmButton: false,
           timer: 1500,
         });
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
