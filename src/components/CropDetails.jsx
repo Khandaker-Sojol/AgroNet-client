@@ -110,7 +110,7 @@ const CropDetails = () => {
           className="w-full md:w-1/2 h-64 object-cover rounded"
         />
         <div className="flex-1">
-          <h1 className="text-2xl font-bold mb-2">{crop.name}</h1>
+          <h1 className="text-2xl font-bold mb-2">{crop.cropName}</h1>
           <p className="text-gray-600 mb-1">Type: {crop.category}</p>
           <p className="text-gray-600 mb-1">
             Price per unit: {crop.pricePerUnit} tk / kg

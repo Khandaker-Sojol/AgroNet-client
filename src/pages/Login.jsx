@@ -75,7 +75,7 @@ const Login = () => {
               <p className="text-[16px]">
                 Don't Have an account?{" "}
                 <Link
-                  to="/auth/register"
+                  to="/register"
                   className="text-primary font-semibold underline "
                 >
                   Register Now
@@ -101,7 +101,9 @@ const Login = () => {
                 <div>
                   <a className="link link-hover">Forgot password?</a>
                 </div>
-                <button className="btn btn-primary mt-4">Login</button>
+                <button className="bg-[#4CAF50] hover:bg-[#388E3C] text-sm text-white font-semibold py-3 rounded-lg transition hover:shadow mt-4 cursor-pointer">
+                  Login
+                </button>
                 {error && (
                   <p className="text-red-500 text-sm font-semibold">{error}r</p>
                 )}

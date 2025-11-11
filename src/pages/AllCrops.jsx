@@ -54,7 +54,7 @@ const AllCrops = () => {
       {filteredCrops.length === 0 ? (
         <p className="text-center text-gray-500">No results found</p>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {filteredCrops.map((crop) => (
             <CropCard key={crop._id} crop={crop} />
           ))}
