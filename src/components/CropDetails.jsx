@@ -111,15 +111,18 @@ const CropDetails = () => {
         />
         <div className="flex-1">
           <h1 className="text-2xl font-bold mb-2">{crop.name}</h1>
-          <p className="text-gray-600 mb-1">Type: {crop.type}</p>
+          <p className="text-gray-600 mb-1">Type: {crop.category}</p>
           <p className="text-gray-600 mb-1">
-            Price per unit: {crop.pricePerUnit} / {crop.unit}
+            Price per unit: {crop.pricePerUnit} tk / kg
           </p>
           <p className="text-gray-600 mb-1">
             Available Quantity: {crop.quantity}
           </p>
           <p className="text-gray-600 mb-1">Location: {crop.location}</p>
-          <p className="text-gray-700 mt-2">{crop.description}</p>
+          <p className="text-gray-700 mt-2">
+            <span className="font-semibold underline">Description :</span>{" "}
+            {crop.description}
+          </p>
         </div>
       </div>
 

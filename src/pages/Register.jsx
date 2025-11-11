@@ -1,36 +1,52 @@
-import React, { use } from "react";
+import React, { useContext } from "react";
 import googleLogo from "/images/icon-google.png";
 import { Link, useNavigate } from "react-router";
 import AuthContext from "../context/AuthContext";
 import Swal from "sweetalert2";
 
 const Register = () => {
-  const { signInWithGoogle, createUser, setUser, setLoading, error, setError } =
-    use(AuthContext);
+  const {
+    signInWithGoogle,
+    createUser,
+    setUser,
+    setLoading,
+    updateProfileUser,
+    error,
+    setError,
+  } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
+  // Google Sign-In
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
-        console.log(result.user);
         setUser(result.user);
+        Swal.fire({
+          icon: "success",
+          title: "Logged in with Google",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate("/");
       })
       .catch((error) => {
-        console.log(error);
         setError(error.message);
+        Swal.fire({
+          icon: "error",
+          title: "Google Sign-In Failed",
+          text: error.message,
+        });
       });
   };
 
+  //Email-Password Sign-Up
   const handleSignUp = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
     const password = e.target.password.value;
     const photo = e.target.photo.value;
-
-    console.log({ name, email, password, photo });
 
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
 
@@ -46,24 +62,37 @@ const Register = () => {
 
     createUser(email, password)
       .then((result) => {
-        console.log(result.user);
-        setUser(result.user);
-        setLoading(false);
-        Swal.fire({
-          icon: "success",
-          title: "Logged in with Google",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        navigate("/");
+        const createdUser = result.user;
+
+        // update user
+        updateProfileUser({
+          displayName: name,
+          photoURL: photo,
+        })
+          .then(() => {
+            setUser({ ...createdUser, displayName: name, photoURL: photo });
+            setLoading(false);
+            Swal.fire({
+              icon: "success",
+              title: "Account Created Successfully!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate("/");
+          })
+          .catch((error) => {
+            console.error(error);
+            setError(error.message);
+            setLoading(false);
+          });
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
         setError(error.message);
         setLoading(false);
         Swal.fire({
           icon: "error",
-          title: "Google Sign-In Failed",
+          title: "Registration Failed",
           text: error.message,
         });
       });
@@ -76,7 +105,7 @@ const Register = () => {
           <div className="card bg-base-100 w-[300px] md:w-[500px] shrink-0 shadow-2xl md:py-10">
             <div className="card-body">
               <div className="text-center space-y-2">
-                <h1 className=" text-4xl md:text-5xl font-bold">Register </h1>
+                <h1 className="text-4xl md:text-5xl font-bold">Register</h1>
                 <p className="text-[16px]">
                   Already have an account?{" "}
                   <Link
@@ -87,6 +116,7 @@ const Register = () => {
                   </Link>
                 </p>
               </div>
+
               <form onSubmit={handleSignUp}>
                 <fieldset className="fieldset">
                   <label className="label">Name</label>
@@ -95,6 +125,7 @@ const Register = () => {
                     name="name"
                     className="input w-full"
                     placeholder="Enter Your Name"
+                    required
                   />
                   <label className="label">Email</label>
                   <input
@@ -102,6 +133,7 @@ const Register = () => {
                     name="email"
                     className="input w-full"
                     placeholder="example@gmail.com"
+                    required
                   />
                   <label className="label">Password</label>
                   <input
@@ -109,6 +141,7 @@ const Register = () => {
                     name="password"
                     className="input w-full"
                     placeholder="**********"
+                    required
                   />
 
                   {error && (
@@ -117,23 +150,28 @@ const Register = () => {
                     </p>
                   )}
 
-                  <label className="label">Image-URL</label>
+                  <label className="label">Image URL</label>
                   <input
                     type="text"
                     name="photo"
                     className="input w-full"
-                    placeholder="Enter Your image URL"
+                    placeholder="Enter Your Image URL"
+                    required
                   />
-                  <button className="bg-[#4CAF50] hover:bg-[#388E3C] text-white font-semibold py-3 rounded-lg transition hover:shadow mt-4 cursor-pointer">
+
+                  <button
+                    type="submit"
+                    className="bg-[#4CAF50] hover:bg-[#388E3C] text-white font-semibold py-3 rounded-lg transition hover:shadow mt-4 cursor-pointer"
+                  >
                     Register
                   </button>
                 </fieldset>
               </form>
+
               <div className="divider">OR</div>
 
               <button className="btn" onClick={handleGoogleSignIn}>
-                {" "}
-                <img src={googleLogo} alt="" />
+                <img src={googleLogo} alt="Google" />
                 Sign Up With Google
               </button>
             </div>
