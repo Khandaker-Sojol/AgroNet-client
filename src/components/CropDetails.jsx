@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from "react";
 import { useParams, Link } from "react-router";
 import Loader from "../components/Loader";
 import AuthContext from "../context/AuthContext";
+import Swal from "sweetalert2";
 
 const CropDetails = () => {
   const { loading, setLoading, user: currentUser } = use(AuthContext);
@@ -41,14 +42,31 @@ const CropDetails = () => {
   }, [quantity, crop]);
 
   const handleSubmitInterest = async () => {
-    if (quantity < 1) return alert("Quantity must be at least 1");
+    if (quantity < 1) {
+      Swal.fire({
+        icon: "warning",
+        title: "Invalid Quantity",
+        text: "Quantity must be at least 1",
+      });
+      return;
+    }
 
-    if (!window.confirm("Are you sure you want to send interest?")) return;
+    //Swal confirmation modal
+    const result = await Swal.fire({
+      title: "Are you sure?",
+      text: `You are about to send interest for ${quantity} ${crop.unit}`,
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Yes, send it!",
+      cancelButtonText: "Cancel",
+    });
+
+    if (!result.isConfirmed) return;
 
     const interestData = {
       cropId: crop._id,
       userEmail: currentUser.email,
-      userName: currentUser.name,
+      userName: currentUser.displayName,
       quantity,
       message,
       status: "pending",
@@ -70,10 +88,18 @@ const CropDetails = () => {
       setAlreadyInterested(true);
       setQuantity(1);
       setMessage("");
-      alert("Interest submitted successfully!");
+      Swal.fire({
+        icon: "success",
+        title: "Interest submitted!",
+        text: "Your interest has been sent successfully.",
+      });
     } catch (err) {
       console.error(err);
-      alert("Failed to submit interest.");
+      Swal.fire({
+        icon: "error",
+        title: "Failed",
+        text: "Failed to submit interest. Please try again.",
+      });
     }
     setSubmitting(false);
   };
@@ -198,7 +224,7 @@ const CropDetails = () => {
                             onClick={() =>
                               handleInterestAction(interest._id, "accepted")
                             }
-                            className="bg-green-500 text-white px-2 rounded"
+                            className="bg-green-500 text-white px-2 rounded cursor-pointer"
                           >
                             Accept
                           </button>
@@ -206,7 +232,7 @@ const CropDetails = () => {
                             onClick={() =>
                               handleInterestAction(interest._id, "rejected")
                             }
-                            className="bg-red-500 text-white px-2 rounded"
+                            className="bg-red-500 text-white px-2 rounded cursor-pointer"
                           >
                             Reject
                           </button>

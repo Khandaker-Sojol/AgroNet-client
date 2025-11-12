@@ -116,7 +116,7 @@ const Navbar = () => {
             className="avatar tooltip tooltip-left gap-4"
             data-tip={user?.displayName}
           >
-            <div className="ring-[#4CAF50] ring-offset-base-100 w-12 rounded-full ring-2 ring-offset-2">
+            <div className="ring-[#4CAF50] ring-offset-base-100 w-12 rounded-full ring-2 ring-offset-2 cursor-pointer">
               <img src={user.photoURL} />
             </div>
             <button
