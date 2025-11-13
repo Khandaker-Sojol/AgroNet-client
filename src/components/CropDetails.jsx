@@ -17,6 +17,7 @@ const CropDetails = () => {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     fetch(`https://agronet-server.vercel.app/crops/${id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -30,6 +31,7 @@ const CropDetails = () => {
           );
           setAlreadyInterested(Boolean(existing));
         }
+        setLoading(false);
       })
       .catch((err) => {
         console.error(err);
