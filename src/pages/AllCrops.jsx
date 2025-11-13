@@ -8,6 +8,7 @@ const AllCrops = () => {
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Fetch crops from backend
   useEffect(() => {
     fetch("https://agronet-server.vercel.app/crops")
       .then((res) => res.json())
@@ -23,15 +24,16 @@ const AllCrops = () => {
       });
   }, []);
 
+  // Handle search
   const handleSearch = (e) => {
-    const query = e.target.value.toLowerCase();
+    const query = e.target.value.toLowerCase().trim();
     setSearchQuery(query);
 
     if (query === "") {
-      setFilteredCrops(crops); // reset to all crops if search empty
+      setFilteredCrops(crops); // reset if search empty
     } else {
       const filtered = crops.filter((crop) =>
-        crop.name.toLowerCase().includes(query)
+        crop.cropName?.toLowerCase().includes(query)
       );
       setFilteredCrops(filtered);
     }
@@ -41,7 +43,8 @@ const AllCrops = () => {
 
   return (
     <div className="p-6">
-      <div className="mb-6">
+      {/* Search Input */}
+      <div className="mb-6 flex justify-center">
         <input
           type="text"
           value={searchQuery}
@@ -51,6 +54,7 @@ const AllCrops = () => {
         />
       </div>
 
+      {/* Crop List */}
       {filteredCrops.length === 0 ? (
         <p className="text-center text-gray-500">No results found</p>
       ) : (

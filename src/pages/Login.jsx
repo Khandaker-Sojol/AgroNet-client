@@ -1,12 +1,12 @@
-import React, { use } from "react";
+import React, { use, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import AuthContext from "../context/AuthContext";
 import googleLogo from "/images/icon-google.png";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const { signInWithGoogle, signInUser, setUser, error, setError } =
-    use(AuthContext);
+  const { signInWithGoogle, signInUser, setUser } = use(AuthContext);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
