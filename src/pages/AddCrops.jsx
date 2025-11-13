@@ -25,11 +25,14 @@ const AddCrop = () => {
       category,
       quantity: parseFloat(quantity),
       pricePerUnit: parseFloat(price),
+      unit: form.unit.value,
       location,
       description,
       image,
-      ownerEmail: currentUser?.email,
-      ownerName: currentUser?.displayName || currentUser?.name,
+      owner: {
+        ownerEmail: currentUser?.email,
+        ownerName: currentUser?.displayName || currentUser?.name,
+      },
       created_at: new Date(),
     };
 
@@ -103,6 +106,14 @@ const AddCrop = () => {
             className="input input-bordered w-full"
             required
           />
+          <input
+            type="text"
+            name="unit"
+            placeholder="Unit (kg, ton, bag)"
+            className="input input-bordered w-full"
+            required
+          />
+
           <input
             type="text"
             name="location"

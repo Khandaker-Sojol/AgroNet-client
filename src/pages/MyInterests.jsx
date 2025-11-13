@@ -7,6 +7,10 @@ const MyInterests = () => {
   const [interests, setInterests] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  // Sorting state
+  const [sortBy, setSortBy] = useState(""); // cropName, status, quantity
+  const [order, setOrder] = useState("asc"); // asc or desc
+
   useEffect(() => {
     if (!currentUser?.email) return;
 
@@ -32,11 +36,52 @@ const MyInterests = () => {
 
   if (loading) return <Loader />;
 
+  // Sorting logic
+  const sortedInterests = [...interests].sort((a, b) => {
+    if (sortBy === "cropName") {
+      return a.cropName.localeCompare(b.cropName) * (order === "asc" ? 1 : -1);
+    }
+    if (sortBy === "status") {
+      const statusOrder = { pending: 0, accepted: 1, rejected: 2 };
+      return (
+        (statusOrder[a.status] - statusOrder[b.status]) *
+        (order === "asc" ? 1 : -1)
+      );
+    }
+    if (sortBy === "quantity") {
+      return (a.quantity - b.quantity) * (order === "asc" ? 1 : -1);
+    }
+    return 0;
+  });
+
   return (
     <div className="p-6 max-w-5xl mx-auto">
       <h1 className="text-2xl font-bold mb-6 text-center">My Interests</h1>
 
-      {interests.length === 0 ? (
+      {/* Sorting controls */}
+      <div className="flex gap-3 mb-4 justify-center">
+        <select
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value)}
+          className="border p-2 rounded"
+        >
+          <option value="">Sort By</option>
+          <option value="cropName">Crop Name</option>
+          <option value="status">Status</option>
+          <option value="quantity">Quantity</option>
+        </select>
+
+        <select
+          value={order}
+          onChange={(e) => setOrder(e.target.value)}
+          className="border p-2 rounded"
+        >
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+      </div>
+
+      {sortedInterests.length === 0 ? (
         <p className="text-center text-gray-500">
           You haven’t shown interest in any crops yet.
         </p>
@@ -53,7 +98,7 @@ const MyInterests = () => {
               </tr>
             </thead>
             <tbody>
-              {interests.map((interest) => (
+              {sortedInterests.map((interest) => (
                 <tr key={interest._id} className="hover:bg-gray-50">
                   <td className="px-4 py-2 border">{interest.cropName}</td>
                   <td className="px-4 py-2 border">{interest.ownerName}</td>
