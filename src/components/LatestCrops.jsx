@@ -9,7 +9,7 @@ const LatestCrops = () => {
   const [latestCrops, setLatestCrops] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/latest-crops")
+    fetch("https://agronet-server.vercel.app/latest-crops")
       .then((res) => res.json())
       .then((data) => {
         setLatestCrops(data);

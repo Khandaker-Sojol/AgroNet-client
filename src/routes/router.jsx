@@ -10,6 +10,7 @@ import MyPosts from "../pages/MyPosts";
 import MyInterests from "../pages/MyInterests";
 import AddCrops from "../pages/AddCrops";
 import CropDetails from "../components/CropDetails";
+import NotFound from "../components/NotFound";
 
 export const router = createBrowserRouter([
   {
@@ -69,5 +70,9 @@ export const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "*",
+    element: <NotFound></NotFound>,
   },
 ]);

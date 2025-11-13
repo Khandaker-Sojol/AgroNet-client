@@ -11,7 +11,14 @@ const MyInterests = () => {
     if (!currentUser?.email) return;
 
     setLoading(true);
-    fetch(`http://localhost:3000/my-interests?email=${currentUser.email}`)
+    fetch(
+      `https://agronet-server.vercel.app/my-interests?email=${currentUser.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${currentUser.accessToken}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         setInterests(data || []);

@@ -1,3 +1,30 @@
+# AgroNet-client - Farmer’s Growth & Connection Platform
+
+AgroNet-client is a modern web application that connects farmers, traders, and consumers in one digital space. Unlike traditional e-commerce platforms, it works as a social agro network, allowing users to interact, collaborate, and grow together.
+
+## Live Site
+
+- Client Site: https://agronet-client.netlify.app/
+- Server Site:https://agronet-server.vercel.app/
+
+## Features
+
+- **Post and Browse Crops:** Users can post what they are growing or selling and browse others’ crop posts.
+- **Interest Requests:** Non-owners can send interest requests for crops, and owners can manage received requests.
+- **Authentication:** Register/Login with email/password or Google account.
+- **CRUD Operations:** Users can create, edit, and delete their crop posts.
+- **Private Routes & Profile:** Secure pages like Add Crop, My Posts, My Interests, and Profile persist on reload.
+- **Responsive UI:** Works smoothly on desktop, tablet, and mobile devices.
+- **Interactive Home Page:** Hero slider, latest crop posts, “How it works” section, news/blogs, and extra sections.
+- **Real-time Updates:** Actions like accepting interests, editing posts, and search filters update instantly on UI.
+
+## Tech Stack
+
+- **Frontend:** React.js, Tailwind CSS, React Router
+- **Backend:** Node.js, Express.js, MongoDB
+- **Authentication:** Firebase Authentication
+- **Hosting:** Netlify (client) & Vercel (server)
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

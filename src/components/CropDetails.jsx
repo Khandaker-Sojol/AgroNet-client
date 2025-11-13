@@ -17,7 +17,7 @@ const CropDetails = () => {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/crops/${id}`)
+    fetch(`https://agronet-server.vercel.app/crops/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setCrop(data);
@@ -75,7 +75,7 @@ const CropDetails = () => {
     setSubmitting(true);
     try {
       const res = await fetch(
-        `http://localhost:3000/crops/${crop._id}/interests`,
+        `https://agronet-server.vercel.app/crops/${crop._id}/interests`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -107,7 +107,7 @@ const CropDetails = () => {
   const handleInterestAction = async (interestId, action) => {
     try {
       const res = await fetch(
-        `http://localhost:3000/crops/${crop._id}/interests/${interestId}`,
+        `https://agronet-server.vercel.app/crops/${crop._id}/interests/${interestId}`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },

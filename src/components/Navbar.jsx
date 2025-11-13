@@ -124,7 +124,7 @@ const Navbar = () => {
               className="bg-[#4CAF50] hover:bg-[#388E3C] text-white font-semibold px-6 md:px-10 py-3 rounded-lg transition hover:shadow cursor-pointer"
             >
               {" "}
-              SignOut
+              LogOut
             </button>
           </div>
         ) : (

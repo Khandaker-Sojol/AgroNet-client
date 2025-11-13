@@ -14,7 +14,11 @@ const MyPosts = () => {
   useEffect(() => {
     if (user?.email) {
       setDataLoading(true);
-      fetch(`http://localhost:3000/my-crops?email=${user.email}`)
+      fetch(`https://agronet-server.vercel.app/my-crops?email=${user.email}`, {
+        headers: {
+          authorization: `Bearer ${user.accessToken}`,
+        },
+      })
         .then((res) => res.json())
         .then((data) => {
           setMyCrops(data);
@@ -39,7 +43,9 @@ const MyPosts = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/crops/${cropId}`, { method: "DELETE" })
+        fetch(`https://agronet-server.vercel.app/crops/${cropId}`, {
+          method: "DELETE",
+        })
           .then(() => {
             setMyCrops(myCrops.filter((c) => c._id !== cropId));
             Swal.fire("Deleted!", "Your crop has been deleted.", "success");
@@ -71,7 +77,7 @@ const MyPosts = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:3000/crops/${editingCrop._id}`,
+        `https://agronet-server.vercel.app/crops/${editingCrop._id}`,
         {
           method: "PUT",
           headers: { "content-type": "application/json" },

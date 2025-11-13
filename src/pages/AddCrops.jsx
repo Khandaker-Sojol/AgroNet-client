@@ -34,10 +34,11 @@ const AddCrop = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/crops", {
+      const res = await fetch("https://agronet-server.vercel.app/crops", {
         method: "POST",
         headers: {
           "content-type": "application/json",
+          authorization: `Bearer ${currentUser.accessToken}`,
         },
         body: JSON.stringify(newCrop),
       });
