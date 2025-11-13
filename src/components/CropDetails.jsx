@@ -5,9 +5,10 @@ import AuthContext from "../context/AuthContext";
 import Swal from "sweetalert2";
 
 const CropDetails = () => {
-  const { loading, setLoading, user: currentUser } = use(AuthContext);
+  const { user: currentUser } = use(AuthContext);
   const { id } = useParams();
   const [crop, setCrop] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // Interest form state
   const [quantity, setQuantity] = useState(1);
@@ -17,6 +18,7 @@ const CropDetails = () => {
   const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
+    if (!currentUser) return;
     setLoading(true);
     fetch(`https://agronet-server.vercel.app/crops/${id}`)
       .then((res) => res.json())
@@ -37,7 +39,7 @@ const CropDetails = () => {
         console.error(err);
         setLoading(false);
       });
-  }, [id, currentUser, setLoading]);
+  }, [id, currentUser]);
 
   useEffect(() => {
     if (crop) setTotalPrice(quantity * crop.pricePerUnit);
@@ -80,7 +82,10 @@ const CropDetails = () => {
         `https://agronet-server.vercel.app/crops/${crop._id}/interests`,
         {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${currentUser.accessToken}`,
+          },
           body: JSON.stringify(interestData),
         }
       );
@@ -112,8 +117,11 @@ const CropDetails = () => {
         `https://agronet-server.vercel.app/crops/${crop._id}/interests/${interestId}`,
         {
           method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ action }), // action = "accepted" | "rejected"
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${currentUser.accessToken}`,
+          },
+          body: JSON.stringify({ action }),
         }
       );
       const updatedCrop = await res.json();
@@ -123,7 +131,7 @@ const CropDetails = () => {
     }
   };
 
-  if (loading) return <Loader />;
+  if (loading || !currentUser) return <Loader />;
 
   if (!crop) return <p className="text-center text-gray-500">Crop not found</p>;
   const isOwner = currentUser?.email === crop.owner.ownerEmail;

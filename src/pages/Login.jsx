@@ -105,7 +105,7 @@ const Login = () => {
                   Login
                 </button>
                 {error && (
-                  <p className="text-red-500 text-sm font-semibold">{error}r</p>
+                  <p className="text-red-500 text-sm font-semibold">{error}</p>
                 )}
               </fieldset>
             </form>

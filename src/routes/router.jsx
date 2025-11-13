@@ -27,7 +27,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/crops/:id",
-        element: <CropDetails></CropDetails>,
+        element: (
+          <PrivateRoute>
+            <CropDetails></CropDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
