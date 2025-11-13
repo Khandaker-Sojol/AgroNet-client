@@ -126,8 +126,24 @@ const CropDetails = () => {
       );
       const updatedCrop = await res.json();
       setCrop(updatedCrop);
+
+      // Show SweetAlert after action
+      Swal.fire({
+        icon: action === "accepted" ? "success" : "error",
+        title:
+          action === "accepted" ? "Interest Accepted" : "Interest Rejected",
+        text:
+          action === "accepted"
+            ? "You have accepted this interest."
+            : "You have rejected this interest.",
+      });
     } catch (err) {
       console.error(err);
+      Swal.fire({
+        icon: "error",
+        title: "Failed",
+        text: "Could not update interest status. Please try again.",
+      });
     }
   };
 
